@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
-  const incrementCount = () => setCount(count + 1);
+class Counter extends React.Component {
+  state = { count: 0 };
+  incrementCount = () => this.setState({ count: this.state.count + 1 });
+  
+  componentDidMount() { document.title = `You clicked ${this.state.count} times`; }
+  componentDidUpdate() { document.title = `You clicked ${this.state.count} times`; }
 
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={incrementCount}>Click Me</button>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <p>You clicked {this.state.count} times</p>
+        <button onClick={this.incrementCount}>Click Me</button>
+      </div>
+    );
+  }
 }
 
 export default Counter;
-
